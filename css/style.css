@@ -47,20 +47,31 @@
 .home-book--dicut:hover img{transform:scale(1.045)}
 .home-book--dicut span{background:white;border-top:0}
 /* Wallpaper catalog: edge-free, transparent cutout books, title overlaid INSIDE card */
-.catalog-card--wallpaper{background:transparent;border:0;box-shadow:none;overflow:visible}
-.catalog-card--wallpaper:hover{box-shadow:none;transform:translateY(-5px)}
-.catalog-card--wallpaper>a{display:block;height:100%}
+.catalog-card--dicut{background:transparent;border:0;box-shadow:none;overflow:visible}
+.catalog-card--dicut:hover{box-shadow:none;transform:translateY(-5px)}
+.catalog-card--dicut>a{display:block;height:100%}
 .catalog-cover--dicut{height:472px;padding:0;background:transparent;display:flex;align-items:flex-start;justify-content:center;overflow:visible;isolation:isolate}
 .catalog-cover--dicut img{height:calc(100% - 55px);width:100%;max-width:100%;object-fit:contain;object-position:center top;filter:drop-shadow(0 18px 17px rgba(45,37,28,.09));transition:transform .65s var(--ease)}
-.catalog-card--wallpaper:hover .catalog-cover--dicut img{transform:translateY(-8px) scale(1.04)}
+.catalog-card--dicut:hover .catalog-cover--dicut img{transform:translateY(-8px) scale(1.04)}
 .wallpaper-cover-meta{position:absolute;left:7%;right:7%;bottom:0;display:flex;align-items:center;justify-content:center;flex-direction:column;min-height:104px;padding:21px 12px 12px;background:linear-gradient(0deg,var(--cream) 81%,rgba(247,244,239,0));text-align:center;pointer-events:none}
 .wallpaper-cover-family{font:700 9px var(--head);color:var(--coral);letter-spacing:.17em}
 .wallpaper-cover-meta h3{font:700 clamp(22px,2.55vw,35px)/1.12 var(--head);letter-spacing:-.045em;margin:8px 0 4px;text-transform:uppercase}
 .wallpaper-cover-open{font:800 9px var(--head);letter-spacing:.11em;color:var(--inksoft);opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s}
-.catalog-card--wallpaper:hover .wallpaper-cover-open,.catalog-card--wallpaper:focus-within .wallpaper-cover-open{opacity:1;transform:none}
-.catalog-grid:has(.catalog-card--wallpaper){row-gap:36px}
+.catalog-card--dicut:hover .wallpaper-cover-open,.catalog-card--dicut:focus-within .wallpaper-cover-open{opacity:1;transform:none}
+.catalog-grid:has(.catalog-card--dicut){row-gap:36px}
 @media(max-width:1200px){.catalog-cover--dicut{height:385px}}
 @media(max-width:900px){.catalog-cover--dicut{height:335px}.home-book--dicut img{height:335px}}
-@media(max-width:720px){.hero-photo{object-position:50% 55%}.hero-overlay{background:linear-gradient(180deg,rgba(24,20,18,.67) 0%,rgba(24,20,18,.18) 61%,rgba(24,20,18,.5) 100%)}.home-book--dicut img{height:225px;padding:0 0 10px}.catalog-cover--dicut{height:286px}.catalog-cover--dicut img{height:calc(100% - 53px)}.wallpaper-cover-meta{left:0;right:0;min-height:83px;padding:13px 4px 7px}.wallpaper-cover-family{font-size:7px}.wallpaper-cover-meta h3{font-size:clamp(15px,4.5vw,23px);margin:5px 0 2px}.wallpaper-cover-open{opacity:1;font-size:7px;transform:none}.catalog-card--wallpaper:hover .catalog-cover--dicut img{transform:scale(1.02)}}
+@media(max-width:720px){.hero-photo{object-position:50% 55%}.hero-overlay{background:linear-gradient(180deg,rgba(24,20,18,.67) 0%,rgba(24,20,18,.18) 61%,rgba(24,20,18,.5) 100%)}.home-book--dicut img{height:225px;padding:0 0 10px}.catalog-cover--dicut{height:286px}.catalog-cover--dicut img{height:calc(100% - 53px)}.wallpaper-cover-meta{left:0;right:0;min-height:83px;padding:13px 4px 7px}.wallpaper-cover-family{font-size:7px}.wallpaper-cover-meta h3{font-size:clamp(15px,4.5vw,23px);margin:5px 0 2px}.wallpaper-cover-open{opacity:1;font-size:7px;transform:none}.catalog-card--dicut:hover .catalog-cover--dicut img{transform:scale(1.02)}}
 @media(max-width:420px){.catalog-cover--dicut{height:244px}.home-book--dicut img{height:190px}.wallpaper-cover-meta h3{font-size:16px}}
-@media(prefers-reduced-motion:reduce){.catalog-card--wallpaper,.catalog-cover--dicut img,.home-book--dicut{transition:none}}
+@media(prefers-reduced-motion:reduce){.catalog-card--dicut,.catalog-cover--dicut img,.home-book--dicut{transition:none}}
+
+/* Draft 04 — same transparent catalog cards for Wallpaper AND Flooring. */
+.ui-arrow{width:1.05em;height:1.05em;vertical-align:-.14em;flex-shrink:0;display:inline-block;stroke:currentColor;pointer-events:none}
+.arr .ui-arrow,.head-cta .ui-arrow,.text-link .ui-arrow{vertical-align:-.17em}
+.circle-arrow .ui-arrow{width:22px;height:22px;vertical-align:middle}
+.compare-line>span .ui-arrow{width:23px;height:23px;vertical-align:middle}
+.read-more .ui-arrow,.wallpaper-cover-open .ui-arrow{width:1em;height:1em;vertical-align:-.15em;margin-left:5px}
+.catalog-cover--dicut img{object-fit:contain}
+.catalog-card--dicut .wallpaper-cover-meta h3{overflow-wrap:anywhere}
+.blog-card img{object-fit:cover;background:var(--bone);padding:0}
+@media(max-width:720px){.catalog-card--dicut .wallpaper-cover-meta h3{font-size:clamp(14px,3.85vw,22px)}.catalog-card--dicut .wallpaper-cover-family{letter-spacing:.07em}.compare-line>span .ui-arrow{width:21px;height:21px}}

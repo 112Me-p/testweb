@@ -47,6 +47,7 @@
     }));
   }
 
+  const ARROW_NE = `<svg class="ui-arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg>`;
   const grid = $('#catalog-grid');
   if (grid) {
     const catalogs = window.FACEWALL_CATALOGS || [];
@@ -70,30 +71,22 @@
       // All values below are from a locally-owned, fixed metadata list.
       grid.replaceChildren(...results.map(c => {
         const article = document.createElement('article');
-        const isWallpaper = c.category === 'wallpaper';
-        article.className = isWallpaper ? 'catalog-card catalog-card--wallpaper' : 'catalog-card';
-        const link = document.createElement('a'); link.href = c.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
-        link.setAttribute('aria-label', `เปิด PDF / eCatalog ${c.title} ${c.caption} ในแท็บใหม่`);
-        const cover = document.createElement('div'); cover.className = isWallpaper ? 'catalog-cover catalog-cover--dicut' : 'catalog-cover';
-        const img = document.createElement('img'); img.src = c.image; img.alt = c.alt; img.loading = 'lazy';
-        img.decoding = 'async';
-        if (isWallpaper) {
-          const overlay = document.createElement('div'); overlay.className = 'wallpaper-cover-meta';
-          const meta = document.createElement('span'); meta.className = 'wallpaper-cover-family'; meta.textContent = 'WALLPAPER / PDF ↗';
-          const name = document.createElement('h3'); name.textContent = c.title;
-          const open = document.createElement('span'); open.className = 'wallpaper-cover-open'; open.textContent = 'OPEN CATALOG ↗';
-          overlay.append(meta,name,open); cover.append(img,overlay); link.append(cover);
-        } else {
-          const tag = document.createElement('span'); tag.className = 'catalog-cover-tag'; tag.textContent = c.family;
-          cover.append(img,tag);
-          const info = document.createElement('div'); info.className = 'catalog-info';
-          const family = document.createElement('span'); family.textContent = 'FLOORING COLLECTION';
-          const name = document.createElement('h3'); name.textContent = c.title;
-          const caption = document.createElement('p'); caption.textContent = c.caption;
-          const open = document.createElement('div'); open.className = 'catalog-open'; open.innerHTML = '<span>VIEW CATALOG</span><span aria-hidden="true">↗</span>';
-          info.append(family,name,caption,open); link.append(cover,info);
-        }
-        article.append(link);
+        article.className = 'catalog-card catalog-card--dicut';
+        const link = document.createElement('a');
+        link.href = c.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+        const destination = c.category === 'wallpaper' ? 'PDF' : 'eCatalog FlipHTML5';
+        link.setAttribute('aria-label', `เปิด ${destination} ${c.title} ในแท็บใหม่`);
+        const cover = document.createElement('div'); cover.className = 'catalog-cover catalog-cover--dicut';
+        const img = document.createElement('img'); img.src = c.image; img.alt = c.alt;
+        img.loading = 'lazy'; img.decoding = 'async';
+        const overlay = document.createElement('div'); overlay.className = 'wallpaper-cover-meta';
+        const meta = document.createElement('span'); meta.className = 'wallpaper-cover-family';
+        meta.textContent = c.category === 'wallpaper' ? 'WALLPAPER / PDF' : c.family + ' / FLIPBOOK';
+        const name = document.createElement('h3'); name.textContent = c.title;
+        const open = document.createElement('span'); open.className = 'wallpaper-cover-open';
+        open.textContent = 'VIEW CATALOG';
+        open.insertAdjacentHTML('beforeend', ARROW_NE);
+        overlay.append(meta, name, open); cover.append(img,overlay);link.append(cover);article.append(link);
         return article;
       }));
       count.textContent = `${results.length.toString().padStart(2,'0')} COLLECTION${results.length===1?'':'S'}`;
