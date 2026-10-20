@@ -4,7 +4,7 @@ window.FACEWALL_CATALOGS = [
     id: 'andante', title: 'Andante', category: 'wallpaper', subType: 'wallpaper',
     family: 'WALLPAPER', caption: 'Premium Design Wallpaper Collection',
     tags: 'andante wallpaper วอลเปเปอร์ decco floral botanical luxury',
-    image: 'assets/book-andante.webp',
+    image: 'assets/book-andante-dicut.webp',
     url: 'https://www.decco-wallpaper.com/_files/ugd/dac763_10d7450b36f344feaff0fb6fcc95ca77.pdf',
     alt: 'ปก eCatalog วอลเปเปอร์ Andante'
   },
@@ -12,7 +12,7 @@ window.FACEWALL_CATALOGS = [
     id: 'no5', title: 'No. 5', category: 'wallpaper', subType: 'wallpaper',
     family: 'WALLPAPER', caption: 'Vinyl Wallcovering · Modern & Plain',
     tags: 'no 5 wallpaper วอลเปเปอร์ decco สีพื้น plain vinyl korean',
-    image: 'assets/book-no5.webp',
+    image: 'assets/book-no5-dicut.webp',
     // Verified replacement URL from DECCO; not the supplied Texture II link.
     url: 'https://www.decco-wallpaper.com/_files/ugd/dac763_43ef8d1421104035b2393ccf9655a53f.pdf',
     alt: 'ปก eCatalog วอลเปเปอร์ No. 5'
@@ -21,7 +21,7 @@ window.FACEWALL_CATALOGS = [
     id: 'squaregarden', title: 'Square Garden', category: 'wallpaper', subType: 'wallpaper',
     family: 'WALLPAPER', caption: 'Natural · Classic · Modern',
     tags: 'square garden wallpaper วอลเปเปอร์ decco natural classic modern garden',
-    image: 'assets/book-square-garden.webp',
+    image: 'assets/book-square-garden-dicut.webp',
     url: 'https://www.decco-wallpaper.com/_files/ugd/dac763_c01076801eeb4d449d75d36c40426d2f.pdf',
     alt: 'ปก eCatalog วอลเปเปอร์ Square Garden'
   },

@@ -69,19 +69,31 @@
       });
       // All values below are from a locally-owned, fixed metadata list.
       grid.replaceChildren(...results.map(c => {
-        const article = document.createElement('article'); article.className = 'catalog-card';
+        const article = document.createElement('article');
+        const isWallpaper = c.category === 'wallpaper';
+        article.className = isWallpaper ? 'catalog-card catalog-card--wallpaper' : 'catalog-card';
         const link = document.createElement('a'); link.href = c.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
-        link.setAttribute('aria-label', `เปิดแคตตาล็อก ${c.title} ${c.caption} ในแท็บใหม่`);
-        const cover = document.createElement('div'); cover.className = 'catalog-cover';
+        link.setAttribute('aria-label', `เปิด PDF / eCatalog ${c.title} ${c.caption} ในแท็บใหม่`);
+        const cover = document.createElement('div'); cover.className = isWallpaper ? 'catalog-cover catalog-cover--dicut' : 'catalog-cover';
         const img = document.createElement('img'); img.src = c.image; img.alt = c.alt; img.loading = 'lazy';
-        const tag = document.createElement('span'); tag.className = 'catalog-cover-tag'; tag.textContent = c.family;
-        cover.append(img,tag);
-        const info = document.createElement('div'); info.className = 'catalog-info';
-        const family = document.createElement('span'); family.textContent = c.category === 'wallpaper' ? 'WALLPAPER COLLECTION' : 'FLOORING COLLECTION';
-        const name = document.createElement('h3'); name.textContent = c.title;
-        const caption = document.createElement('p'); caption.textContent = c.caption;
-        const open = document.createElement('div'); open.className = 'catalog-open'; open.innerHTML = '<span>VIEW CATALOG</span><span aria-hidden="true">↗</span>';
-        info.append(family,name,caption,open); link.append(cover,info); article.append(link);
+        img.decoding = 'async';
+        if (isWallpaper) {
+          const overlay = document.createElement('div'); overlay.className = 'wallpaper-cover-meta';
+          const meta = document.createElement('span'); meta.className = 'wallpaper-cover-family'; meta.textContent = 'WALLPAPER / PDF ↗';
+          const name = document.createElement('h3'); name.textContent = c.title;
+          const open = document.createElement('span'); open.className = 'wallpaper-cover-open'; open.textContent = 'OPEN CATALOG ↗';
+          overlay.append(meta,name,open); cover.append(img,overlay); link.append(cover);
+        } else {
+          const tag = document.createElement('span'); tag.className = 'catalog-cover-tag'; tag.textContent = c.family;
+          cover.append(img,tag);
+          const info = document.createElement('div'); info.className = 'catalog-info';
+          const family = document.createElement('span'); family.textContent = 'FLOORING COLLECTION';
+          const name = document.createElement('h3'); name.textContent = c.title;
+          const caption = document.createElement('p'); caption.textContent = c.caption;
+          const open = document.createElement('div'); open.className = 'catalog-open'; open.innerHTML = '<span>VIEW CATALOG</span><span aria-hidden="true">↗</span>';
+          info.append(family,name,caption,open); link.append(cover,info);
+        }
+        article.append(link);
         return article;
       }));
       count.textContent = `${results.length.toString().padStart(2,'0')} COLLECTION${results.length===1?'':'S'}`;
