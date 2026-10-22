@@ -113,32 +113,27 @@
     setButtonState();render();
   }
 
-  const inquiryForm = $('#inquiry-form');
-  if (inquiryForm) {
-    inquiryForm.addEventListener('submit', event => {
-      event.preventDefault();
-      if (!inquiryForm.reportValidity()) return;
-      const data = new FormData(inquiryForm);
-      const val = name => (data.get(name) || '').toString().trim();
-      const msg = ['สวัสดีครับ/ค่ะ FACEWALL ขอปรึกษางานตกแต่งผนังและพื้น',
-        `ชื่อผู้ติดต่อ: ${val('name')}`,
-        `เบอร์ติดต่อ: ${val('phone') || 'ไม่ได้ระบุ'}`,
-        `ประเภทงาน: ${val('type')}`,
-        `พื้นที่ติดตั้ง: ${val('place') || 'ไม่ได้ระบุ'}`,
-        `พื้นที่โดยประมาณ: ${val('area') || 'ไม่ได้ระบุ'}`,
-        `รายละเอียดเพิ่มเติม: ${val('message') || 'ไม่ได้ระบุ'}`].join('\n');
-      $('#inquiry-preview').value = msg;
-      $('#inquiry-result').hidden = false;
-      $('#inquiry-result').scrollIntoView({block:'nearest',behavior:'smooth'});
-      toast('จัดเตรียมข้อความแล้ว กรุณาคัดลอกเพื่อส่งผ่าน LINE');
-    });
-    $('#copy-inquiry')?.addEventListener('click', async () => {
-      const text = $('#inquiry-preview').value;
-      try {
-        if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
-        else { const el = $('#inquiry-preview');el.focus();el.select();document.execCommand('copy'); }
-        toast('คัดลอกข้อความแล้ว เปิด LINE เพื่อส่งให้ทีมงาน');
-      } catch(err) {toast('คัดลอกอัตโนมัติไม่ได้ กรุณาเลือกและคัดลอกข้อความด้วยตนเอง');}
-    });
+
+  // Render only verified, approved FACEWALL installations. No fabricated projects or reviews.
+  const verifiedProjects = window.FACEWALL_REAL_PROJECTS || [];
+  const realProjectsGrid = document.querySelector('#real-projects-grid');
+  if (realProjectsGrid && verifiedProjects.length) {
+    document.querySelector('#real-projects').hidden = false;
+    for (const p of verifiedProjects) {
+      if (!p.title || !p.image || !p.description || !p.category) continue;
+      const article = document.createElement('article');article.className='real-project-card';
+      const img=document.createElement('img');img.src=p.image;img.alt=p.title;img.loading='lazy';
+      const info=document.createElement('div');info.className='real-project-info';
+      const badge=document.createElement('small');badge.textContent=p.category.toUpperCase()+' • '+(p.location||'');
+      const name=document.createElement('h3');name.textContent=p.title;
+      const material=document.createElement('p');material.textContent='วัสดุ: '+(p.products||'สอบถามรายละเอียด');
+      const desc=document.createElement('p');desc.textContent=p.description;
+      const ask=document.createElement('a');ask.href='contact.html?project='+encodeURIComponent(p.title);ask.textContent='สนใจงานสไตล์นี้ ↗';
+      info.append(badge,name,material,desc);
+      if (p.review?.quote && p.review?.approved === true) {
+        const block=document.createElement('blockquote');block.textContent='“'+p.review.quote+'”';info.append(block);
+      }
+      info.append(ask);article.append(img,info);realProjectsGrid.append(article);
+    }
   }
 })();

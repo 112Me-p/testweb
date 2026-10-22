@@ -11,5 +11,6 @@ window.FACEWALL_CONFIG = Object.freeze({
   facebookPageName: 'Facewall Flooring',
   facebookUrl: '', // Await verified Facebook page URL; do not fabricate it
   serviceArea: 'กรุงเทพฯ และปริมณฑล',
+  leadWebAppUrl: 'https://script.google.com/macros/s/AKfycbx2Q84aEY3ux5IThnKbaLljPMBFMMg-hSOFxa-RwiznbIgYww3EDhZEoZCL8nqw69iXkw/exec', // SET after deploying Apps Script. Never put Google credentials here.
   demo: true
 });
