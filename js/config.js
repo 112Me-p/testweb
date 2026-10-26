@@ -5,8 +5,8 @@ window.FACEWALL_CONFIG = Object.freeze({
   brandName: 'FACEWALL',
   brandSubtitle: 'WALLPAPER & FLOORING',
   futureBrandName: 'FACEWALL FLOORING',
-  lineId: '@proface', // TEMPORARY — confirmed by user
-  lineUrl: 'https://line.me/R/ti/p/%40proface',
+  lineId: '@112rjeke', // Current FACEWALL LINE OA
+  lineUrl: 'https://line.me/R/ti/p/%40112rjeke',
   phone: '0961108841',
   facebookPageName: 'Facewall Flooring',
   facebookUrl: '', // Await verified Facebook page URL; do not fabricate it

@@ -57,7 +57,7 @@
     ].join('\n');
   }
   function lineUrl(message) {
-    return 'https://line.me/R/oaMessage/%40proface/?'+encodeURIComponent(message);
+    return 'https://line.me/R/oaMessage/%40112rjeke/?'+encodeURIComponent(message);
   }
   function showLine(v,id,caption) {
     const msg = formatLine(v,id);
